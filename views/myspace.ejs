@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>myspace</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.min.css" media="screen" title="no title"  charset="utf-8" >
 </head>
 <body>
-<h3>congratulations!<em style="color:red"><%= user.username %></em>，Login Success！</h3>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">DANTEGG</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span> <%= user.username %>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/logout">logout</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">test</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>
+    </div>
+</nav>
 my space
+<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
