@@ -46,7 +46,7 @@ app.get('/',function (req,res) {
 })
 
 app.get('/login',function (req,res) {
-    res.render('login')
+    res.render('login',{message:req.session.error})
 })
 
 app.get('/logout',function (req,res) {
@@ -76,16 +76,16 @@ app.post('/login',function (req,res) {
             res.send(500)
             console.log(err)
         }else if(!doc){
-            req.session.error = 'username is wrong'
-            //res.redirect('login')
-            res.send(404)
+            req.session.error = 'username or password is wrong'
+            res.redirect('login')
+            //res.send(404)
 
         }else{
             if(req.body.password != doc.password){
-                req.session.error = 'password is wrong '
+                req.session.error = 'username or password is wrong'
 
-                res.send(404)
-                //res.redirect('login')
+                //res.send(404)
+                res.redirect('login')
 
             }else{
                 req.session.user = doc
