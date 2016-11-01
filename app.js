@@ -5,6 +5,7 @@ var expressSession = require('express-session')
 var bodyParser = require('body-parser')
 var multer = require('multer')
 var mongoose = require('mongoose')
+var http = require('http')
 
 var app = express()
 
@@ -55,6 +56,34 @@ app.get('/logout',function (req,res) {
     res.redirect('/login')
 })
 
+
+
+
+app.get('/testproxy',function(request,response){
+    console.log('zzz')
+    var options = {
+        hostname: 'www.c20steam.com',
+        port: 80,
+        path: '/findUserSimbol_User.action',
+        method: 'GET'
+    };
+
+    var req = http.request(options, function (res) {
+        console.log('STATUS: ' + res.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(res.headers));
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            console.log('BODY: ' + chunk);
+            response.json(chunk)
+        });
+    });
+
+    req.on('error', function (e) {
+        console.log('problem with request: ' + e.message);
+    });
+
+    req.end();
+})
 
 app.post('/login',function (req,res) {
     // var user = {
